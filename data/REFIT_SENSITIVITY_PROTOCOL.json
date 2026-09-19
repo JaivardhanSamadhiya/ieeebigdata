@@ -1,0 +1,13 @@
+{
+  "date_utc": "2026-09-19",
+  "status": "RETROSPECTIVE_FIXED_PIPELINE_PLAN_BEFORE_REFIT",
+  "known_results": "Published aggregate metrics, original out-of-fold predictions and scoring-only lineage omission sensitivities are known.",
+  "purpose": "Verify numerical reproducibility of the exact existing ridge implementation and characterize variation across random partitions without selecting a favorable seed.",
+  "analyses": [
+    "Refit all three original five-fold designs and compare every prediction with saved values within absolute tolerance 1e-6.",
+    "Report training-fold mean predictor on every original split as a diagnostic baseline; no biological features, tuning or thresholds.",
+    "Report train/test sizes, retained feature counts and train/test CC overlap for every original fold.",
+    "Refit the identical ridge pipeline for all 20 random five-fold seeds from 2026091900 through 2026091919 inclusive. Report all scores and descriptive ranges. Do not replace the primary seed with any new seed."
+  ],
+  "interpretation": "Seed ranges describe random partition sensitivity, not confidence intervals or independent validation. Complete-CC allocation is unchanged. No hyperparameters or representations are optimized."
+}

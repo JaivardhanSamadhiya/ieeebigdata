@@ -1,0 +1,9 @@
+{
+  "date_utc": "2026-09-19",
+  "status": "RETROSPECTIVE_SENSITIVITY_PLAN_BEFORE_MATCHED_SIZE_REFITS",
+  "known_results": "Original three-design ridge results, training-mean baselines, 20 balanced random partition refits, and lineage scoring-omission results are known.",
+  "question": "Does random evaluation remain optimistic when its fold sizes exactly match those of complete-CC evaluation?",
+  "design": "For each seed 2026092000 through 2026092019 inclusive, permute all 217 host indices and divide into five disjoint test blocks with the exact original grouped fold sizes in the original order: 88, 50, 27, 26, 26. Training sets are the complements. Use the identical alpha=10 ridge, prevalence filter and scaler. Report all 20 macro Spearman, R2 and MAE results and contrasts against the unchanged grouped result.",
+  "interpretation": "Matches the aggregate distribution of training and test set sizes, not per-host training composition or every potential covariate. Retrospective robustness analysis, not prospective validation; no selection of seeds, models, thresholds, or favorable output.",
+  "prohibitions": ["Do not replace primary evaluation", "Do not drop unfavorable seeds", "Do not call ranges confidence intervals"]
+}

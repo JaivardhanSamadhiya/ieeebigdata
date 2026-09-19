@@ -1,0 +1,6 @@
+# Preserve scientific input bytes so SHA256 provenance survives checkout.
+data/** -text
+results/** -text
+*.py text eol=lf
+*.md text eol=lf
+requirements.txt text eol=lf

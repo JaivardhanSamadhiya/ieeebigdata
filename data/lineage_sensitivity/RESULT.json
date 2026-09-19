@@ -1,0 +1,50 @@
+{
+  "status": "COMPLETE",
+  "interpretation": "Retrospective fixed-prediction sensitivity, not refitted validation or new confidence intervals.",
+  "input_sha256": {
+    "data/lineage_sensitivity/PROTOCOL.json": "3ee73afb2a6076f6ba156c461cdac4a6d66097f36b367647bbb7d3073d4ac068",
+    "data/evaluation_design_predictions.csv": "c1479db9f06df3f6558a2e5457ec04d9fc6acfcf16fdf8dcbd7f0ff54bd407f9",
+    "data/evaluation_design_metrics.csv": "2d3ff98e5c13e61e353a2e3232a50d217cf1783ecfb0900a37f5d3312d787ba9",
+    "data/walsh_split_predictions.csv": "59d50aad4b13c1680a34fca6fdd4c3d7619eb70a6527458b2e61e30befa9031b",
+    "data/moller_pairwise_genome_similarity.csv": "4e6e5bb5808220b471dc820041ec388a5e66bdfb76594e3b3acba9299aac68be"
+  },
+  "headline_metrics_reproduced": true,
+  "moller_omission_contrast_ranges": {
+    "spearman": [
+      0.18539050755495912,
+      0.3718104144417388
+    ],
+    "r2": [
+      0.27318164320179805,
+      0.5593590511861113
+    ],
+    "mae": [
+      -0.048175783565631514,
+      -0.023736521568883562
+    ]
+  },
+  "moller_equal_cc_mae": {
+    "complete_cc_holdout": 0.19182260639408663,
+    "outcome_stratified_kfold": 0.16267228597909392,
+    "random_kfold": 0.15721757289916186
+  },
+  "moller_cc_random_lower_mae_count": 13,
+  "moller_n_cc": 15,
+  "moller_largest_cc_n": 88,
+  "moller_inverse_cc_concentration": 4.2236074984303515,
+  "walsh_omission_contrast_ranges": {
+    "auroc_contrast": [
+      0.12228260869565222,
+      0.18518518518518517
+    ],
+    "ap_contrast": [
+      0.0813237304964659,
+      0.12065673715758296
+    ]
+  },
+  "walsh_valid_omissions": 6,
+  "genome_omission_auc_range": [
+    0.9864504011149524,
+    0.9968858561979128
+  ]
+}

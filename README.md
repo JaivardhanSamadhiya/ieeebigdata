@@ -12,6 +12,10 @@ The repository also includes a phenotype-blind genomic-neighborhood audit, an in
 
 - `data/`: compact frozen protocols, result summaries, prediction tables, and bootstrap outputs.
 - `scripts/verify_results.py`: consistency checks for the headline results.
+- `scripts/reproduce_ridge.py`: refits all original ridge predictions from the sparse protein-family matrix, checks stored predictions, reports training-mean baselines, and optionally runs all 20 predeclared random seeds.
+- `scripts/run_lineage_sensitivity.py`: fixed-prediction lineage omission and equal-lineage error checks.
+- `scripts/matched_fold_size_sensitivity.py`: random partitions with exactly the same test-fold sizes as grouped evaluation, across 20 predeclared seeds.
+- `results/`: numerical reproduction and partition-sensitivity results, including every seed.
 - `.gitignore`: explicit protection against accidentally committing raw reads, assemblies, caches, or credentials.
 
 ## Scope
@@ -20,13 +24,41 @@ The raw sequencing reads, assemblies, downloaded software caches, and temporary 
 
 ## Reproduce headline checks
 
-Use Python with `pandas` installed:
+Use Python 3.11 with the recorded numerical environment:
 
 ```bash
+python -m pip install -r requirements.txt
 python scripts/verify_results.py
+python scripts/verify_integrity.py
+python scripts/reproduce_ridge.py --repeat-seeds
+python scripts/run_lineage_sensitivity.py
+python scripts/matched_fold_size_sensitivity.py
 ```
 
 The script checks the reported random and lineage-held-out metrics, lineage effect size, genome-neighborhood AUC, and frozen recovery-validation metrics.
+
+The refit script independently reconstructs 5,208 out-of-fold predictions (217 hosts x eight phages x three designs). Maximum discrepancy in the recorded environment is 2.3e-16. It starts from a 217 x 9,373 sparse presence/absence matrix, not from sequencing reads. Protein-family construction was global and phenotype-blind, so this is a transductive family dictionary, not a fully inductive pangenome workflow. Training-fold preprocessing consists of prevalence filtering to [0.02, 0.98] and `StandardScaler(with_mean=False)`; ridge uses alpha=10 and LSQR with an intercept. No duplicate-column collapse is applied by this analysis.
+
+## Robustness and limitations
+
+All additional sensitivity protocols explicitly disclose that headline outcomes were already known. They do not constitute new confirmatory validation. The original primary split is retained; no new seed is selected to replace it.
+
+- Every single-CC scoring omission preserves the primary contrast. Equal-CC MAE is 0.157 for random versus 0.192 for grouped evaluation, favoring random in 13/15 CCs.
+- Twenty additional balanced random partitions yield Spearman 0.428-0.500 and R2 0.073-0.185.
+- Twenty random partitions matching grouped test-fold sizes (88, 50, 27, 26, 26) yield Spearman 0.430-0.507 and R2 0.072-0.227. Size matching does not control all differences in training composition.
+- These ranges are descriptive, not confidence intervals. Existing paired CC-bootstrap intervals condition on fixed predictions and do not include model-refitting uncertainty. Walsh has only six CCs.
+- Pair-bootstrap genome-similarity intervals in the original result JSON do not account adequately for shared-host dependence. Use the point estimates and explicitly labeled lineage-omission checks, not those intervals as independent-sample evidence.
+- The 30-host receptor-rule evaluation is an internal recovery cohort with targeted-feature QC, not external/unseen-lineage validation. It failed its frozen success gate.
+
+`data/ROBUSTNESS_AUDIT_PROTOCOL.json` is explicitly an abridged retrospective summary, not the original frozen bytes referred to by the hash in `ROBUSTNESS_AUDIT_RESULT.json`. The original scientific results are unchanged.
+
+## Source attribution
+
+Moller et al. (2021), *Genes Influencing Phage Host Range in Staphylococcus aureus on a Species-Wide Scale*, mSphere: https://doi.org/10.1128/mSphere.01263-20.
+
+Walsh et al. (2023), *The host phylogeny determines viral infectivity and replication across Staphylococcus host species*, PLOS Pathogens: https://doi.org/10.1371/journal.ppat.1011433. Source data and code: https://doi.org/10.6084/m9.figshare.21642209.v1.
+
+Derived tables retain source biological identifiers. Upstream sources retain their original terms. No claim is made that these assays or genomes were newly collected for this analysis.
 
 ## Interpretation
 

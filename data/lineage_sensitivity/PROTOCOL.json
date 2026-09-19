@@ -1,0 +1,16 @@
+{
+  "status": "RETROSPECTIVE_SENSITIVITY_PLAN_BEFORE_NEW_COMPUTATIONS",
+  "date_utc": "2026-09-19",
+  "known_results": "All existing Moller, Walsh, recovery, and genome-neighborhood headline results are known. These checks are not a new confirmatory test or an untouched validation cohort.",
+  "purpose": "Assess domination by large or influential clonal complexes and accurately qualify uncertainty, without changing predictors.",
+  "analyses": [
+    "Recompute every primary design/phage metric from saved out-of-fold predictions and assert agreement with existing metric tables.",
+    "For each of 15 Moller CCs, omit that CC from scoring only and recompute macro Spearman, R2 and MAE contrasts. Keep original predictions; this is an influence analysis, not a refit or leave-one-CC-out validation.",
+    "Compute each CC/phage MAE and equally average across CCs and phages; report the number of CCs whose mean MAE favors random evaluation. Do not average unstable small-CC R2 or correlation.",
+    "For each of six Walsh CCs, omit that CC from scoring and report AUROC and AP contrast. Mark one-class subsets unavailable.",
+    "For each Moller CC, omit its hosts and all incident pairs from the genome similarity audit; compute same-CC AUC and within-minus-between median similarity. Report ranges as sensitivity ranges, never confidence intervals.",
+    "Report CC counts and inverse concentration 1/sum(p_CC squared) descriptively; this is not an estimated effective sample size.",
+    "Record all inputs with SHA256 and retain all results regardless of direction."
+  ],
+  "prohibitions": ["No model fitting or hyperparameter selection", "No threshold selection", "No changes to frozen original artifacts", "No treating scoring-only omission ranges as confidence intervals"]
+}

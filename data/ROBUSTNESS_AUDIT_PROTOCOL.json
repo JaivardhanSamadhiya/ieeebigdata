@@ -1,7 +1,8 @@
 {
   "schema_version": 1,
-  "frozen_at": "2026-08-23",
-  "status": "FROZEN_BEFORE_OUTCOME_ACCESS",
+  "original_protocol_date": "2026-08-23",
+  "status": "RETROSPECTIVE_ABRIDGEMENT_NOT_ORIGINAL_FROZEN_BYTES",
+  "provenance_note": "This public summary was abridged after the analyses. It is not the original frozen protocol and does not match the protocol_sha256 in ROBUSTNESS_AUDIT_RESULT.json. Original Moller results and Walsh complete-CC results were already known before the original protocol; the genome-pair distribution and matched Walsh split contrast were not inspected before its freeze. The original artifact is preserved in the source project.",
   "objective": "Test whether reported clonal-complex grouping is supported by phenotype-blind whole-genome similarity and whether random splitting is optimistic in an independent Staphylococcus aureus phage-susceptibility cohort.",
   "prohibitions": [
     "No feature, model, metric, split, clustering, or threshold selection using new outcomes.",
@@ -16,7 +17,7 @@
       "AUC for same reported-CC membership",
       "nearest-neighbor reported-CC agreement"
     ],
-    "uncertainty": "2,000 bootstrap replicates."
+    "uncertainty": "Originally 2,000 pair-bootstrap replicates for similarity/AUC and host-bootstrap replicates for nearest-neighbor agreement. Those intervals do not account adequately for shared-host/lineage dependence and should not be treated as independent-sample evidence. Retained for provenance, not recommended for inference."
   },
   "independent_cohort_split_comparison": {
     "cohort": "45 exact-assembly-QC Walsh hosts with binary ISP spot-test susceptibility.",

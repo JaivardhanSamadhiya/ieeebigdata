@@ -19,3 +19,6 @@ cache/
 *.fa
 *.fa.gz
 .env
+__pycache__/
+*.pyc
+.venv/
