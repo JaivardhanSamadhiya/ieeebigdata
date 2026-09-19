@@ -6,7 +6,7 @@ This repository contains the scientific artifacts for a computational analysis o
 
 The analysis shows that random isolate-level validation can substantially overstate generalization when related bacterial genomes occur in both training and test partitions. Using a fixed phenotype-blind 80% protein-pangenome representation and ridge pipeline, random cross-validation obtains macro Spearman 0.457 and $R^2=0.132$, while complete clonal-complex holdout obtains 0.190 and -0.237.
 
-The repository also includes a phenotype-blind genomic-neighborhood audit, an independent 45-host cohort split comparison, and a one-time outcome-blind evaluation of a frozen p0017 receptor rule on 30 recovered hosts.
+The repository also includes a phenotype-blind genomic-neighborhood audit, a separate 45-host assay-cohort split comparison, and a one-time outcome-blind evaluation of a frozen p0017 receptor rule on 30 recovered hosts. The separate assay cohort is not established to be genomically independent: cross-cohort similarity is high for several hosts (see below).
 
 ## Contents
 
@@ -53,6 +53,12 @@ All additional sensitivity protocols explicitly disclose that headline outcomes 
 `data/ROBUSTNESS_AUDIT_PROTOCOL.json` is explicitly an abridged retrospective summary, not the original frozen bytes referred to by the hash in `ROBUSTNESS_AUDIT_RESULT.json`. The original scientific results are unchanged.
 
 The new lineage-sensitivity manifest hashes text after canonical CRLF-to-LF normalization (`input_text_lf_sha256`) so the checks work across operating systems. Historical hashes retain their original conventions.
+
+## Fixed genome-support diagnostic and cross-cohort provenance
+
+`python scripts/test_genome_support.py` checks self-exclusion and train-only threshold behavior. `python scripts/genome_support_diagnostic.py` applies one fixed outcome-free support gate to the existing predictions: accept a query when its nearest training genome has similarity at least the fifth percentile of training leave-self-out nearest-neighbor similarities. The gate accepts 204/217 random-split hosts (94.0%) but 0/217 complete-CC-held-out hosts. Zero coverage is failure to provide predictions for that deployment shift, not evidence of accurate unseen-lineage prediction. No alternative threshold is selected. Protocol, all gate decisions, per-lineage coverage and summaries are retained.
+
+`scripts/cross_cohort_genomes.py --assembly-root PATH` requires the original assembly layout and manifests (not included), plus sourmash 4.9.4 and Biopython. It recomputes k=31, scaled=1000 sketches for all 262 genomes. All 9,765 cross-cohort similarities and 262 assembly accessions/checksums are in `results/cross_cohort_genomes/`. Ten fixed within-Moller validation pairs reproduce exactly. Thirteen of 45 Walsh hosts have a nearest Moller Jaccard >=0.95; four reach >=0.99 (maximum 0.996524). These fixed descriptive thresholds flag close genomic relatives, not proven duplicate isolates. No hosts were excluded and no prediction was refit based on these findings. Separate accessions and assays must not be described as proof of independent genomes.
 
 ## Source attribution
 

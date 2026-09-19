@@ -1,0 +1,10 @@
+{
+  "status": "RETROSPECTIVE_PROVENANCE_AUDIT_BEFORE_CROSS_COHORT_COMPUTATION",
+  "created_utc": "2026-09-19T12:03:00Z",
+  "cohorts": "Fixed 217 Moller model hosts and 45 Walsh model hosts; no reselection",
+  "known_information": "Distinct BioSample strings, previous within-Moller genome summaries and prediction outcomes are already known. Cross-cohort genomic similarities have not been computed in this work cycle.",
+  "method": "sourmash MinHash n=0 ksize=31 scaled=1000; add all FASTA contigs with force=True; compare all 9765 cross-cohort pairs",
+  "report": "All pair similarities, nearest Moller genome for every Walsh host, counts at fixed descriptive thresholds 0.95 and 0.99, FASTA input checksums and accessions",
+  "interpretation": "Thresholds flag similarity, not proof of shared isolate identity. No phenotype-driven exclusions or new prediction fitting. Distinct accessions alone do not establish independent strains.",
+  "validation": "Recompute a fixed first 10 pairs from the existing within-Moller table and compare to stored similarities. No outcome columns used in genomic computation."
+}

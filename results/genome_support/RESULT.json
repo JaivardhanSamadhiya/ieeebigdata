@@ -1,0 +1,53 @@
+{
+  "status": "COMPLETE",
+  "protocol_sha256": "976ae8407a9a994676ef5a5296e367605ed1e4080474bfceb17a460be5d063d2",
+  "gate_before_error_scoring_sha256": "abf4aad60949a1871528c4e0afb360ca8571267887eb5ec9908957786b3c4577",
+  "designs": {
+    "random_kfold": {
+      "n": 217,
+      "n_accepted": 204,
+      "coverage": 0.9400921658986175,
+      "all_host_mae": 0.1285004073669799,
+      "accepted_mae": 0.1259374347361927,
+      "rejected_mae": 0.16871936249625613,
+      "accepted_training_mean_mae": 0.14942206782127757,
+      "accepted_cc_represented_fraction": 1.0,
+      "rejected_cc_represented_fraction": 0.7692307692307693,
+      "threshold_range": [
+        0.8649874379333227,
+        0.8820566859005443
+      ]
+    },
+    "outcome_stratified_kfold": {
+      "n": 217,
+      "n_accepted": 198,
+      "coverage": 0.9124423963133641,
+      "all_host_mae": 0.12691638299363273,
+      "accepted_mae": 0.12085906352134734,
+      "rejected_mae": 0.19004002802060674,
+      "accepted_training_mean_mae": 0.1476770624540015,
+      "accepted_cc_represented_fraction": 1.0,
+      "rejected_cc_represented_fraction": 0.7368421052631579,
+      "threshold_range": [
+        0.8649874379333227,
+        0.8865168896989928
+      ]
+    },
+    "complete_cc_holdout": {
+      "n": 217,
+      "n_accepted": 0,
+      "coverage": 0.0,
+      "all_host_mae": 0.16168754674439653,
+      "accepted_mae": null,
+      "rejected_mae": 0.16168754674439653,
+      "accepted_training_mean_mae": null,
+      "accepted_cc_represented_fraction": null,
+      "rejected_cc_represented_fraction": 0.0,
+      "threshold_range": [
+        0.866551724137931,
+        0.8963381901281662
+      ]
+    }
+  },
+  "interpretation": "Outcome-free genomic-support screening; no guarantee of accuracy, clinical safety, or transfer."
+}

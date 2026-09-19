@@ -1,0 +1,11 @@
+{
+  "status": "COMPLETE",
+  "protocol_sha256": "653f96c5ddf7d5bf310296ba22bb0f97539d28606e9abb2e3e560daf07fd556a",
+  "sourmash_version": "4.9.4",
+  "n_pairs": 9765,
+  "validation_max_absolute_error": 0.0,
+  "maximum_jaccard": 0.9965241571080987,
+  "walsh_hosts_with_nearest_at_least_095": 13,
+  "walsh_hosts_with_nearest_at_least_099": 4,
+  "interpretation": "High similarity flags require provenance investigation; no phenotype-based exclusions made."
+}

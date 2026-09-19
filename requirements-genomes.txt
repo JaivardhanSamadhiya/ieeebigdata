@@ -1,0 +1,3 @@
+-r requirements.txt
+sourmash==4.9.4
+biopython==1.83

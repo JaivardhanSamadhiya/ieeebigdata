@@ -1,0 +1,13 @@
+{
+  "created_utc": "2026-09-19T11:58:00Z",
+  "status": "RETROSPECTIVE_DIAGNOSTIC_PROTOCOL_BEFORE_GATE_COMPUTATION",
+  "known_results": "All existing response outcomes, fixed prediction vectors, genomic within/between-lineage similarity summaries, and unsuccessful lineage-remedy results are known. This is an exploratory deployment diagnostic, not a new confirmatory validation set.",
+  "question": "Can a simple outcome-free genomic-support check flag predictions outside the training genomes' observed neighborhood?",
+  "gate": "In each original training fold, compute each training host's nearest other training genome by sourmash k31 scaled1000 Jaccard. The support threshold is the fifth percentile of those similarities (numpy linear quantile). Accept a test host only if its maximum similarity to a training host is at least that threshold. The quantile is fixed at0.05; no thresholds will be compared or selected.",
+  "inputs": "Previously computed pairwise genomic similarities and original random, outcome-stratified, and complete-CC five-fold allocations. No phenotype or reported CC enters the score or its threshold. Original outcome-stratified allocations inherently use outcomes but are not redesigned.",
+  "predictor": "Original fixed ridge predictions, unchanged. Genome support is not a replacement predictor.",
+  "report": ["Every fold's threshold and counts", "Per-host support score and accept/reject decision before joining outcomes", "Coverage overall and per CC", "All-host, accepted-host and rejected-host mean absolute error across eight phages", "Training-mean baseline MAE on the exact same accepted hosts", "Fraction of accepted/rejected test hosts sharing a CC with any training host"],
+  "checks": ["All self comparisons excluded from training nearest-neighbor scores", "Gate accepts only genome-similarity arrays and indices", "Exactly one OOF gate per host per design", "All651 gates written and hashed before outcome-error scoring", "Zero accepted/rejected counts yield null errors, never a fabricated score"],
+  "interpretation": "Coverage is essential: rejection of all unseen lineages is not useful predictive transfer. This empirical rule has no conformal, distribution-free, clinical safety, or acceptance guarantee. Comparisons of accepted and rejected hosts involve different populations, not causal error improvements. Nearest-neighbor OOD detection and selective prediction are established prior art.",
+  "prohibitions": ["No new model fitting", "No phenotype-based gate tuning", "No choosing a more favorable threshold after evaluation", "No filtering failed cases from the reported cohort"]
+}
