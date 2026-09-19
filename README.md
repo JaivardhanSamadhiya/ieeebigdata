@@ -52,6 +52,8 @@ All additional sensitivity protocols explicitly disclose that headline outcomes 
 
 `data/ROBUSTNESS_AUDIT_PROTOCOL.json` is explicitly an abridged retrospective summary, not the original frozen bytes referred to by the hash in `ROBUSTNESS_AUDIT_RESULT.json`. The original scientific results are unchanged.
 
+The new lineage-sensitivity manifest hashes text after canonical CRLF-to-LF normalization (`input_text_lf_sha256`) so the checks work across operating systems. Historical hashes retain their original conventions.
+
 ## Source attribution
 
 Moller et al. (2021), *Genes Influencing Phage Host Range in Staphylococcus aureus on a Species-Wide Scale*, mSphere: https://doi.org/10.1128/mSphere.01263-20.

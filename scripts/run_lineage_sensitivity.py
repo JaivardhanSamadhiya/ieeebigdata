@@ -17,7 +17,8 @@ if not M.exists():
     OUT = ROOT / 'data/lineage_sensitivity'
 
 def digest(p):
-    return hashlib.sha256(p.read_bytes()).hexdigest()
+    # Text inputs: canonical LF newlines make provenance portable across Git checkouts.
+    return hashlib.sha256(p.read_bytes().replace(b'\r\n', b'\n')).hexdigest()
 
 def quantitative(frame):
     rows = []
@@ -77,7 +78,7 @@ def main():
     genome.to_csv(OUT/'genome_lineage_omission.csv',index=False)
     result={
         'status':'COMPLETE', 'interpretation':'Retrospective fixed-prediction sensitivity, not refitted validation or new confidence intervals.',
-        'input_sha256':{p.relative_to(ROOT).as_posix():digest(p) for p in paths},
+        'input_text_lf_sha256':{p.relative_to(ROOT).as_posix():digest(p) for p in paths},
         'headline_metrics_reproduced':True,
         'moller_omission_contrast_ranges':{k:[float(influence[k].min()),float(influence[k].max())] for k in ['spearman','r2','mae']},
         'moller_equal_cc_mae':balanced.to_dict(),

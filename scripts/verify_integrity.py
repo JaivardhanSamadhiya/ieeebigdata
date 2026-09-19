@@ -9,8 +9,9 @@ def sha(p): return hashlib.sha256(p.read_bytes()).hexdigest()
 
 def main():
     result=json.loads((ROOT/'data/lineage_sensitivity/RESULT.json').read_text())
-    for name,expected in result['input_sha256'].items():
-        assert sha(ROOT/name)==expected, f'Input hash mismatch: {name}'
+    for name,expected in result['input_text_lf_sha256'].items():
+        content=(ROOT/name).read_bytes().replace(b'\r\n',b'\n')
+        assert hashlib.sha256(content).hexdigest()==expected, f'Input hash mismatch: {name}'
     match=json.loads((ROOT/'results/matched_fold_size_sensitivity.json').read_text())
     assert sha(ROOT/'data/MATCHED_FOLD_SIZE_PROTOCOL.json')==match['protocol_sha256']
     assert len(match['all_seeds'])==20
