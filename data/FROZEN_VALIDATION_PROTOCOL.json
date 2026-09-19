@@ -1,0 +1,89 @@
+{
+  "schema_version": 3,
+  "frozen_at_utc": "2026-08-21T05:52:58.903693+00:00",
+  "status": "FROZEN_BEFORE_RECOVERY_OUTCOME_ACCESS",
+  "development_cohort": "217 assembly-QC-passing Moller hosts used in prior Phase 2",
+  "validation_cohort": "36 hosts excluded from development solely by missing/failed assembly QC",
+  "selection_is_outcome_blind": true,
+  "outcome_blind_amendments": [
+    {
+      "reason": "pilot reassembly QC showed that whole-genome fragmentation can persist despite recoverable full-length target genes; eligibility was therefore changed before any recovery outcome access to a targeted feature-completeness gate",
+      "outcomes_accessed_before_amendment": false,
+      "whole_assembly_qc_retained_as_subgroup": true
+    },
+    {
+      "reason": "two excessive-depth assemblies exhausted the fixed WSL memory ceiling; deterministic read-ID downsampling was frozen as a technical retry before any recovery outcome access",
+      "outcomes_accessed_before_amendment": false,
+      "predictor_or_success_gate_changed": false
+    }
+  ],
+  "assembly_recovery_policy": {
+    "standard_assembler": "SPAdes 3.15.5 --isolate",
+    "primary_threads": 6,
+    "primary_memory_gib": 6,
+    "retry_trigger": "incomplete or failed assembly after checksum-verified full-read attempt",
+    "retry_sampling": "deterministic BLAKE2b read-ID Bernoulli sampling, mate synchronized",
+    "retry_sampling_seed": 20260820,
+    "retry_target_aggregate_source_compressed_gib": 0.2,
+    "retry_threads": 4,
+    "retry_memory_gib": 6,
+    "selection_uses_outcomes": false
+  },
+  "target": "p0017 strict susceptible (S) versus strict resistant (R); intermediate excluded",
+  "primary_predictor": {
+    "name": "WTA glycosylation receptor rule",
+    "positive_if": "tarS intact AND tarM not intact AND tarP not intact",
+    "feature_source": "recovered genome translated-protein homology calls",
+    "rationale": "frozen post-hoc mechanistic hypothesis from the development cohort",
+    "development_status": "exploratory; not a confirmatory result"
+  },
+  "primary_metrics": [
+    "balanced_accuracy",
+    "MCC",
+    "sensitivity",
+    "specificity"
+  ],
+  "primary_feature_eligibility": {
+    "filtered_assembly_size_mbp": [
+      2.3,
+      3.4
+    ],
+    "ambiguous_bases_max_fraction": 0.01,
+    "control_loci": [
+      "tagO",
+      "tarA",
+      "tarB",
+      "tarH",
+      "tarI",
+      "tarJ",
+      "dltA",
+      "dltC",
+      "oatA"
+    ],
+    "minimum_confident_control_loci": 8,
+    "contig_reporting_floor_bp": 500,
+    "note": "targeted feature-completeness gate fixed before recovery outcomes; no phenotype participates"
+  },
+  "strict_subgroup_eligibility": "development whole-assembly gates after >=500-bp reporting floor: 2.5-3.2 Mbp, <=500 contigs, N50 >=10 kb, ambiguous bases <=1%",
+  "bootstrap": {
+    "replicates": 10000,
+    "seed": 20260820,
+    "resampling_unit": "reported clonal complex with all member hosts retained",
+    "percentile_interval": [
+      0.025,
+      0.975
+    ]
+  },
+  "success_gate": {
+    "balanced_accuracy_cluster_bootstrap_95pct_ci_low_gt": 0.5,
+    "MCC_gt": 0.2,
+    "sensitivity_gte": 0.6,
+    "specificity_gte": 0.6,
+    "minimum_evaluable_hosts": 20,
+    "minimum_outcome_classes": 2
+  },
+  "uncertainty_unit": "reported clonal complex",
+  "analysis_rule": "one evaluation only; no model or threshold changes after outcomes are joined",
+  "interpretation": "A pass is internal outcome-blind recovery validation, not external or clinical validation. A fail remains a fail and cannot be repaired by retuning on this cohort.",
+  "protocol_sha256": "64cf14c5fbfa5bfe162c23828d4d7a82a46561266b9abea84d429dfd9f748f51"
+}

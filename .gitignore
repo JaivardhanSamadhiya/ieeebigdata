@@ -1,0 +1,21 @@
+# Build outputs and local editor files
+*.aux
+*.log
+*.synctex.gz
+*.toc
+.DS_Store
+Thumbs.db
+
+# Do not place raw reads, assemblies, caches, or credentials in this public package.
+raw_reads/
+assemblies/
+cache/
+*.fastq
+*.fastq.gz
+*.fq
+*.fq.gz
+*.fasta
+*.fasta.gz
+*.fa
+*.fa.gz
+.env

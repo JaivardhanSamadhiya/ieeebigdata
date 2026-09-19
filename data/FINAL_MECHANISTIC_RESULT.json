@@ -1,0 +1,66 @@
+{
+  "status": "COMPLETE",
+  "protocol_sha256": "87137563f5819beb25edc8f09a4b0bd2ea3f278264ca1621863da49f22ffb2a5",
+  "lineage_eta2_macro": 0.23508600466065097,
+  "lineage_icc_macro": 0.22039880008272603,
+  "lineage_eta2_range": [
+    0.12657367703809647,
+    0.32126479523820445
+  ],
+  "phase4_single_task_macro_r2": -0.15605660134310675,
+  "lineage_explains_more_than_unseen_lineage_model": true,
+  "supported_transferable_mechanisms": [],
+  "tar_rule_best_result": [
+    {
+      "locus": "TarS+/TarM-/TarP-",
+      "feature_type": "posthoc_rule",
+      "phage": "p0017",
+      "n": 217,
+      "variable_cc": 5,
+      "partial_correlation": -0.20401646468299645,
+      "partial_r2": 0.041622717861748336,
+      "within_cc_slope_od600": -0.12828622854958527,
+      "permutation_p": 0.0029985007496251873,
+      "same_direction_cc": 2,
+      "loo_sign_stability": 0.9333333333333333,
+      "fdr_q": 0.10128269198733966,
+      "supported_transferable_mechanism": false
+    }
+  ],
+  "evaluation_macro": [
+    {
+      "design": "complete_cc_holdout",
+      "spearman": 0.18987159643495935,
+      "r2": -0.23671974686471153,
+      "mae": 0.1616875467443965
+    },
+    {
+      "design": "outcome_stratified_kfold",
+      "spearman": 0.4630705806310684,
+      "r2": 0.129983020398189,
+      "mae": 0.12691638299363273
+    },
+    {
+      "design": "random_kfold",
+      "spearman": 0.45690321753871327,
+      "r2": 0.1322695333663017,
+      "mae": 0.1285004073669799
+    }
+  ],
+  "evaluation_optimism": [
+    {
+      "design": "random_kfold",
+      "delta_macro_spearman_vs_cc_holdout": 0.2670316211037539,
+      "delta_macro_r2_vs_cc_holdout": 0.36898928023101324,
+      "delta_macro_mae_vs_cc_holdout": -0.0331871393774166
+    },
+    {
+      "design": "outcome_stratified_kfold",
+      "delta_macro_spearman_vs_cc_holdout": 0.273198984196109,
+      "delta_macro_r2_vs_cc_holdout": 0.3667027672629005,
+      "delta_macro_mae_vs_cc_holdout": -0.03477116375076378
+    }
+  ],
+  "classification_rule": "A if a transferable mechanism passes; otherwise B if random/stratified CV materially exceeds complete-CC CV and lineage eta2 is substantial; otherwise C.",
+  "final_classification": "B_positive_methodological_generalization"
+}

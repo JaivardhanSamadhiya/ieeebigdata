@@ -1,0 +1,115 @@
+{
+  "status": "COMPLETE",
+  "protocol_sha256": "55c0e159c5fe1abc59d4aee34a431356a69de6b6f42463d4294cc6094e045821",
+  "genome_similarity_audit": {
+    "n_hosts": 217,
+    "n_reported_cc": 15,
+    "n_pairs": 23436,
+    "n_same_cc_pairs": 5466,
+    "n_between_cc_pairs": 17970,
+    "same_cc_median_jaccard": 0.9275606469002695,
+    "between_cc_median_jaccard": 0.5116090746589627,
+    "median_jaccard_difference": 0.41595157224130686,
+    "median_jaccard_difference_ci95": [
+      0.4109707568481903,
+      0.42159737499794
+    ],
+    "same_cc_auc_from_jaccard": 0.9944157701955183,
+    "same_cc_auc_ci95": [
+      0.9929846238221567,
+      0.9958350320013373
+    ],
+    "nearest_neighbor_cc_agreement": 0.9907834101382489,
+    "nearest_neighbor_cc_agreement_ci95": [
+      0.9769585253456221,
+      1.0
+    ],
+    "between_cc_pairs_jaccard_ge_0_80": 0,
+    "interpretation": "Reported CC is strongly supported as a genome-dependence grouping",
+    "input_sha256": {
+      "data\\hostbio_phase2\\pangenome\\pangenome_hosts.csv": "8b20b396224c44db6d9bec40818c67e62d6cb8a3f8f84430f72d552081aa9d60",
+      "data\\hostbio_phase1\\moller\\annotation_manifest.json": "763ae6290a5c5dd261ae88a6592d2c2153af40f68dea83d4fc0c33a154c2d5a6",
+      "data\\moller_genome_benchmark\\host_manifest.csv": "aa3e381768fac548cf88ccfe1f151eaa8904faee33a0a47ac8af4be112a9dcab"
+    }
+  },
+  "walsh_split_replication": {
+    "n_hosts": 45,
+    "positives": 29,
+    "negatives": 16,
+    "n_reported_cc": 6,
+    "feature_count": 146,
+    "random_stratified_metrics": {
+      "average_precision": 0.7970712584192996,
+      "prevalence": 0.6444444444444445,
+      "ap_lift": 0.1526268139748551,
+      "roc_auc": 0.7564655172413793,
+      "mcc_at_0_5": 0.4218479169376454,
+      "balanced_accuracy_at_0_5": 0.7198275862068966,
+      "brier": 0.19939139392654076,
+      "log_loss": 0.6553199536825218
+    },
+    "complete_cc_metrics": {
+      "average_precision": 0.6862137745314388,
+      "prevalence": 0.6444444444444445,
+      "ap_lift": 0.04176933008699435,
+      "roc_auc": 0.6099137931034483,
+      "mcc_at_0_5": 0.30495123115910355,
+      "balanced_accuracy_at_0_5": 0.6573275862068966,
+      "brier": 0.25920073176995145,
+      "log_loss": 0.9967842954272325
+    },
+    "primary_contrasts": {
+      "roc_auc": {
+        "random_minus_complete_cc": 0.14655172413793105,
+        "complete_cc_bootstrap_ci95": [
+          0.04761904761904767,
+          0.25428571428571434
+        ],
+        "valid_replicates": 2000,
+        "directionally_replicates": true
+      },
+      "average_precision": {
+        "random_minus_complete_cc": 0.11085748388786076,
+        "complete_cc_bootstrap_ci95": [
+          0.016776910095752662,
+          0.14914150068671428
+        ],
+        "valid_replicates": 2000,
+        "directionally_replicates": true
+      }
+    },
+    "replication_status": "directional_replication",
+    "selected_c_random": [
+      10.0,
+      10.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "selected_c_complete_cc": [
+      10.0,
+      1.0,
+      1.0,
+      1.0,
+      10.0
+    ],
+    "random_fold_cc_overlap_counts": [
+      6,
+      4,
+      4,
+      5,
+      5
+    ],
+    "complete_cc_fold_cc_overlap_counts": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "input_sha256": {
+      "data\\walsh_2023_isp\\benchmark\\assays\\ST_Bin\\observations_st_bin.csv": "e7559361ae0bf3651b0e5962e265c162f21427447c230b21c46eae6826d42e14",
+      "data\\walsh_2023_isp\\benchmark\\features\\host_features.csv": "2f0821cebda40d6c51ff9a2d62a2b2d146690c1ecade7a4d7e6e6dd84d981797"
+    }
+  }
+}

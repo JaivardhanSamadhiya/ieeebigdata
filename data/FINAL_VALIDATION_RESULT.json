@@ -1,0 +1,63 @@
+{
+  "status": "FAIL",
+  "claim_scope": "internal outcome-blind targeted-feature-QC recovery validation; not external or clinical validation",
+  "protocol_sha256": "64cf14c5fbfa5bfe162c23828d4d7a82a46561266b9abea84d429dfd9f748f51",
+  "candidate_predictions_sha256": "0ea421170eca3277d9986f6611013dfcbb253c5c8be4003d240a4c17f9876941",
+  "pooled_metrics": {
+    "n": 30,
+    "positives": 9,
+    "negatives": 21,
+    "tp": 8,
+    "tn": 2,
+    "fp": 19,
+    "fn": 1,
+    "sensitivity": 0.8888888888888888,
+    "specificity": 0.09523809523809523,
+    "balanced_accuracy": 0.49206349206349204,
+    "MCC": -0.024246432248443597,
+    "accuracy": 0.3333333333333333,
+    "positive_predictive_value": 0.2962962962962963,
+    "negative_predictive_value": 0.6666666666666666
+  },
+  "strict_whole_assembly_qc_subgroup_metrics": {
+    "n": 14,
+    "positives": 3,
+    "negatives": 11,
+    "tp": 3,
+    "tn": 2,
+    "fp": 9,
+    "fn": 0,
+    "sensitivity": 1.0,
+    "specificity": 0.18181818181818182,
+    "balanced_accuracy": 0.5909090909090909,
+    "MCC": 0.21320071635561044,
+    "accuracy": 0.35714285714285715,
+    "positive_predictive_value": 0.25,
+    "negative_predictive_value": 1.0
+  },
+  "cluster_bootstrap_95pct_intervals": {
+    "balanced_accuracy": [
+      0.3333333333333333,
+      0.5975624274099883
+    ],
+    "MCC": [
+      -0.5,
+      0.26773977630083295
+    ],
+    "sensitivity": [
+      0.625,
+      1.0
+    ],
+    "specificity": [
+      0.0,
+      0.2222222222222222
+    ]
+  },
+  "bootstrap_evaluable_replicates": 10000,
+  "gate_decisions": {
+    "balanced_accuracy_ci_low_gt_0_5": false,
+    "MCC_gt_0_2": false,
+    "sensitivity_gte_0_6": true,
+    "specificity_gte_0_6": false
+  }
+}
