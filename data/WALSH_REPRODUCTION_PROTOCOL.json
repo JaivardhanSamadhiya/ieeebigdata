@@ -1,0 +1,10 @@
+{
+  "status": "RETROSPECTIVE_EXACT_REPRODUCTION_NOT_NEW_MODEL_SEARCH",
+  "date_utc": "2026-09-19",
+  "known_results": "Both historical split prediction tables, AUROC/AP, and cross-cohort genomic similarity are already inspected.",
+  "purpose": "Verify feature/label identity, train-only nested selection and exact historical predictions from released compact features.",
+  "outer_splits": "StratifiedKFold 5 shuffle seed20260823; original deterministic size-balanced complete-CC fivefold",
+  "inner_selection": "Original GroupKFold min(4,n_training_groups); candidate C=(.01,.1,1,10), mean validation AP across folds with two classes in both partitions; first maximum wins. Fallback C=1 if fewer than3 groups.",
+  "model": "Training-only median imputer and StandardScaler; balanced elastic-net LogisticRegression l1_ratio=.5 solver=saga max_iter=5000 random_state=42",
+  "prohibitions": "No new candidates, outcome-driven sample exclusions, performance optimization or replacing historical artifacts. Any mismatch is an audit finding."
+}

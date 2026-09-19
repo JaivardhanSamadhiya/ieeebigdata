@@ -1,0 +1,23 @@
+{
+  "created_utc": "2026-09-19T11:38:00Z",
+  "status": "RETROSPECTIVE_REMEDY_PROTOCOL_BEFORE_NEW_FITS",
+  "numerical_amendment_before_aggregate_results": "First fold's coefficient-invariance assertion failed at 2.013e-8 under the default LSQR stopping tolerance, before any evaluation metrics were computed or inspected. Within-lineage ridge and its invariance check now use solver tol=1e-10 to verify the mathematical invariance accurately. Alpha, all features, evaluation, and the original pooled/weighted baseline implementations are unchanged.",
+  "known_outcomes": "All historical cohort outcomes and headline split results, 40 random-seed refits, and lineage scoring-omission checks are already known. This is exploratory and not an untouched test set.",
+  "hypothesis": "Learning genomic slopes from within-lineage variation may reduce lineage-proxy dependence and improve error on unseen lineages.",
+  "input": "Existing globally phenotype-blind 80%-identity protein-family matrix (217 hosts, 9373 columns) and quantitative OD600 outcomes for all eight phages; transductive dictionary limitation retained.",
+  "preprocessing": "Per training fold, filter raw feature prevalence to [0.02,0.98] and scale with training StandardScaler(with_mean=False), as in the original fixed ridge.",
+  "models": {
+    "pooled_ridge": "Original alpha=10 LSQR ridge, intercept, equal isolate weights.",
+    "balanced_ridge": "Same ridge with isolate weight n_train/(G_train*n_CC), so all CCs have equal total weight and all weights sum to n_train.",
+    "within_lineage_ridge": "Subtract training CC-specific means from scaled X and Y. Fit alpha=10 LSQR ridge with no intercept to centered values and the same equal-CC weights. Predict held-out X with mean_CC(Y_CC)+(X-mean_CC(X_CC))*beta. No held-out outcome or held-out mean is used.",
+    "isolate_mean": "Training outcome mean per phage, no genomic features.",
+    "lineage_mean": "Equal mean of training-CC outcome means per phage, no genomic features."
+  },
+  "primary_design": "Exact original deterministic complete-CC five-fold allocation.",
+  "sensitivity_design": "Leave one of the 15 CCs out at a time, refitting all models with unchanged parameters.",
+  "primary_metric": "MAE first averaged within each CC/phage, then equally over CCs and eight phages. Compare within_lineage_ridge with BOTH pooled_ridge and lineage_mean; improvements are baseline minus proposed MAE.",
+  "secondary_metrics": ["isolate-pooled macro MAE", "macro Spearman", "macro R2", "per-phage metrics", "per-lineage MAE"],
+  "uncertainty": "2000 paired CC bootstrap draws of the per-CC mean error differences using seed20260919; percentile95% intervals condition on fitted OOF predictions, with no model-refit uncertainty. No multiplicity-adjusted confirmatory claims.",
+  "implementation_checks": ["No train/test CC overlap", "All hosts predicted once per design/model", "Training-only preprocessing", "Pooled original-fold predictions match saved artifact within1e-6", "Adding arbitrary constants separately to each training lineage's outcomes leaves within-lineage fitted slopes unchanged within numerical tolerance"],
+  "prohibitions": ["No alpha or feature-threshold tuning", "No dropping phages, lineages, models, or unfavorable results", "No alteration of historical artifacts", "No calling this an externally validated or clinical predictor", "No further model search driven by these evaluation outcomes"]
+}
