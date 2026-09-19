@@ -6,6 +6,12 @@
     "walsh_split_predictions.csv": "59d50aad4b13c1680a34fca6fdd4c3d7619eb70a6527458b2e61e30befa9031b",
     "WALSH_REPRODUCTION_PROTOCOL.json": "075c92067e56e2d27796111c4cef0199ef9824e9a2b51e5167138582381e5a61"
   },
+  "input_text_lf_sha256": {
+    "walsh_host_features.csv": "c23044c78853050f22ecc0c5e96ba5b9fc03b87e8992ff5358b6fa7f79d3799f",
+    "walsh_observations_st_bin.csv": "c55b9ecfb85de4d103299a7cfdfd2df145af745a86d0307f128b93580fa40579",
+    "walsh_split_predictions.csv": "cf833fea7469e322168e6ac6709ab9997b30aae44c2c24c4346a1612a2119821",
+    "WALSH_REPRODUCTION_PROTOCOL.json": "075c92067e56e2d27796111c4cef0199ef9824e9a2b51e5167138582381e5a61"
+  },
   "n_hosts": 45,
   "n_candidate_features": 146,
   "entirely_missing_columns": [

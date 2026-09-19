@@ -86,10 +86,12 @@ def main():
     outputs.to_csv(out/'reproduced_predictions.csv',index=False)
     inputs=['walsh_host_features.csv','walsh_observations_st_bin.csv','walsh_split_predictions.csv','WALSH_REPRODUCTION_PROTOCOL.json']
     result={'status':'COMPLETE','input_sha256':{f:hashlib.sha256((data/f).read_bytes()).hexdigest() for f in inputs},
+            'input_text_lf_sha256':{f:hashlib.sha256((data/f).read_bytes().replace(b'\r\n',b'\n')).hexdigest() for f in inputs},
             'n_hosts':len(task),'n_candidate_features':len(columns),
             'entirely_missing_columns':entirely_missing,'available_columns':available,'designs':results,
             'scope':'Exact historical refit, not new validation; different assay cohort with close cross-cohort genomic relatives.'}
     (out/'RESULT.json').write_text(json.dumps(result,indent=2)+'\n')
-    print(json.dumps(result,indent=2))
+    print(json.dumps({'status':'COMPLETE','n_hosts':len(task),'available_columns':available,
+                      'max_prediction_errors':{k:v['max_prediction_error'] for k,v in results.items()}},indent=2))
 
 if __name__=='__main__': main()
