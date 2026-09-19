@@ -1,4 +1,6 @@
 {
+  "matrix_sha256": "2acda41a9a2cc5eac4301fa20bc4a51e27b9490ef4e3b3c2ae6212fb68e52bff",
+  "protocol_sha256": "79c21031c8d2535c37b5aaf8f9ca34ed96249c0b923437315ba041f4863455b6",
   "versions": {
     "numpy": "1.26.4",
     "pandas": "2.2.2",

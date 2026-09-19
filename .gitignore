@@ -22,3 +22,4 @@ cache/
 __pycache__/
 *.pyc
 .venv/
+results/ridge_reproduction_check.json

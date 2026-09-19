@@ -75,7 +75,9 @@ def main():
         'random_kfold':list(KFold(5,shuffle=True,random_state=20260821).split(y)),
         'outcome_stratified_kfold':list(StratifiedKFold(5,shuffle=True,random_state=20260821).split(y,strata)),
         'complete_cc_holdout':list(grouped(g))}
-    result={'versions':{'numpy':np.__version__,'pandas':pd.__version__,'scipy':scipy.__version__,'sklearn':sklearn.__version__},
+    result={'matrix_sha256':hashlib.sha256((DATA/'pangenome_presence_absence.npz').read_bytes()).hexdigest(),
+            'protocol_sha256':hashlib.sha256((DATA/'REFIT_SENSITIVITY_PROTOCOL.json').read_bytes()).hexdigest(),
+            'versions':{'numpy':np.__version__,'pandas':pd.__version__,'scipy':scipy.__version__,'sklearn':sklearn.__version__},
             'matrix_shape':list(x.shape),'designs':{}}
     for design,folds in splits.items():
         p,null,sizes=predict(x,y,g,folds)
@@ -94,6 +96,7 @@ def main():
             result['retrospective_random_seed_sensitivity'].append(row)
             print(row,flush=True)
     out=ROOT/'results'; out.mkdir(exist_ok=True)
-    (out/'ridge_reproduction.json').write_text(json.dumps(result,indent=2)+'\n')
+    filename='ridge_reproduction.json' if args.repeat_seeds else 'ridge_reproduction_check.json'
+    (out/filename).write_text(json.dumps(result,indent=2)+'\n')
 
 if __name__=='__main__': main()

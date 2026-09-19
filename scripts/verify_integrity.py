@@ -18,6 +18,8 @@ def main():
     assert [r['seed'] for r in match['all_seeds']]==list(range(2026092000,2026092020))
     assert match['test_sizes']==[88,50,27,26,26]
     refit=json.loads((ROOT/'results/ridge_reproduction.json').read_text())
+    assert sha(ROOT/'data/pangenome_presence_absence.npz')==refit['matrix_sha256']
+    assert sha(ROOT/'data/REFIT_SENSITIVITY_PROTOCOL.json')==refit['protocol_sha256']
     assert len(refit['retrospective_random_seed_sensitivity'])==20
     assert all(d['max_prediction_discrepancy']<1e-6 for d in refit['designs'].values())
     print('Scientific input hashes, complete seed sets, and recorded prediction checks pass.')
